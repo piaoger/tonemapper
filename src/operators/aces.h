@@ -41,6 +41,7 @@ public:
     }
 
     void process(const Image *image, uint8_t *dst, float exposure, float *progress) const override {
+
         const nanogui::Vector2i &size = image->getSize();
         *progress = 0.f;
         float delta = 1.f / (size.x() * size.y());
@@ -67,6 +68,7 @@ public:
                 *progress += delta;
             }
         }
+
     }
 
     float graph(float value) const override {
