@@ -36,7 +36,7 @@ public:
     inline int getHeight() const { return m_size.y(); }
 
     void saveAsPNG(const std::string &filename, TonemapOperator *tonemap, float exposure = 1.f, float *progress = nullptr) const;
-
+    void saveAsJPEG(const std::string &filename, TonemapOperator *tonemap, float exposure = 1.f, float *progress = nullptr) const;
 private:
     std::unique_ptr<Color3f[]> m_pixels;
 

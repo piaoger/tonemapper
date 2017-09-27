@@ -1,10 +1,10 @@
 /*
     src/gui.cpp -- Graphical user interface
-    
+
     Copyright (c) 2016 Tizian Zeltner
 
     Tone Mapper is provided under the MIT License.
-    See the LICENSE.txt file for the conditions of the license. 
+    See the LICENSE.txt file for the conditions of the license.
 */
 
 #include <gui.h>
@@ -110,9 +110,9 @@ TonemapperScreen::TonemapperScreen() : nanogui::Screen(Eigen::Vector2i(800, 600)
 	m_saveButton = new Button(m_window, "Save LDR image");
 	m_saveButton->setBackgroundColor(nanogui::Color(0, 255, 0, 25));
 	m_saveButton->setIcon(ENTYPO_ICON_SAVE);
-	m_saveButton->setTooltip("Save .png LDR image");
+	m_saveButton->setTooltip("Save LDR image");
 	m_saveButton->setCallback([&] {
-		std::string filename = file_dialog({ { "png", "Portable Network Graphics" } }, true);
+		std::string filename = file_dialog({ { "jpg", "JPEG Images" }, {"png", "Portable Network Graphics"} }, true);
 		if (m_image && filename != "") {
 			m_saveWindow = new Window(this, "Saving tonemapped image..");
 			m_saveWindow->setLayout(new BoxLayout(Orientation::Vertical, Alignment::Middle, 10, 10));
@@ -131,7 +131,15 @@ TonemapperScreen::TonemapperScreen() : nanogui::Screen(Eigen::Vector2i(800, 600)
 			performLayout(nvgContext());
 
 			m_saveThread = new std::thread([&, filename]{
-				m_image->saveAsPNG(filename, m_tonemapOperators[m_tonemapIndex], m_exposure, &m_progress);
+				std::size_t found = filename.find_last_of(".");
+				std::string ext = filename.substr(found+1);
+
+				if (ext == "png") {
+					m_image->saveAsPNG(filename, m_tonemapOperators[m_tonemapIndex], m_exposure, &m_progress);
+				} else if (ext == "jpg") {
+					m_image->saveAsJPEG(filename, m_tonemapOperators[m_tonemapIndex], m_exposure, &m_progress);
+				}
+
 			});
 		}
 	});
@@ -239,7 +247,7 @@ void TonemapperScreen::setTonemapMode(int index) {
 	auto scroll = new VScrollPanel(m_tonemapPopup);
 	scroll->setLayout(new BoxLayout(Orientation::Vertical));
 	auto popopPanel = new Widget(scroll);
-	
+
 	popopPanel->setLayout(new BoxLayout(Orientation::Vertical, Alignment::Fill, 10, 10));
 	int newIndex = 0;
 	for (auto tm: m_tonemapOperators) {
@@ -339,7 +347,7 @@ void TonemapperScreen::setExposureMode(int index) {
 	auto tmp = new Widget(m_exposurePopup);
 	tmp->setLayout(new BoxLayout(Orientation::Vertical, Alignment::Minimum));
 	auto popopPanel = new Widget(tmp);
-	
+
 	popopPanel->setLayout(new BoxLayout(Orientation::Vertical, Alignment::Fill, 10, 10));
 	int newIndex = 0;
 	for (int i = 0; i < 3; ++i) {
@@ -364,7 +372,7 @@ void TonemapperScreen::setExposureMode(int index) {
 
 	auto *panel = new Widget(m_exposureWidget);
 	panel->setLayout(new BoxLayout(Orientation::Horizontal, Alignment::Middle, 0, 20));
-	
+
 	Button *button;
 	Slider *slider;
 	FloatBox<float> *textBox;
@@ -390,7 +398,7 @@ void TonemapperScreen::setExposureMode(int index) {
 		textBox->setAlignment(TextBox::Alignment::Right);
 		textBox->setEditable(true);
 	}
-	
+
 	if (index == 0) {
 		m_exposure = 1.f;
 		slider->setValue(0.5f);
@@ -535,8 +543,8 @@ void TonemapperScreen::draw(NVGcontext *ctx) {
 			m_saveWindow->dispose();
 		}
 	}
-	
-	
+
+
 	Screen::draw(ctx);
 }
 

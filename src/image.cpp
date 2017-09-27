@@ -138,3 +138,19 @@ void Image::saveAsPNG(const std::string &filename, TonemapOperator *tonemap, flo
 
 	delete[] rgb8;
 }
+
+void Image::saveAsJPEG(const std::string &filename, TonemapOperator *tonemap, float exposure, float *progress) const {
+	uint8_t *rgb8 = new uint8_t[3 * m_size.x() * m_size.y()];
+	uint8_t *dst = rgb8;
+
+	tonemap->process(this, dst, exposure, progress);
+
+	int ret = stbi_write_jpg(filename.c_str(), m_size.x(), m_size.y(), 3, rgb8, 80);
+	if (ret == 0) {
+		cerr << "Error: Could not save JPEG file" << endl;
+	}
+
+	*progress = -1.f;
+
+	delete[] rgb8;
+}
