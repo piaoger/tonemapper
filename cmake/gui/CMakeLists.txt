@@ -51,7 +51,7 @@ add_executable(tonemapper MACOSX_BUNDLE
 
 target_link_libraries(tonemapper nanogui ${NANOGUI_EXTRA_LIBS})
 
-set_target_properties(tonemapper PROPERTIES OUTPUT_NAME "../../tonemapper")
+set_target_properties(tonemapper PROPERTIES OUTPUT_NAME "../../Tone Mapper")
 
 if (APPLE)
     set_target_properties(tonemapper PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/../../res/info.plist)
