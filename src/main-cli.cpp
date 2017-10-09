@@ -29,6 +29,11 @@ using namespace cimg_library;
 
 
 // Color Transfer implementations
+// https://github.com/ProGamerGov/Neural-Tools
+// others:
+//   https://github.com/ZZPot/Xiao-transfer
+///  https://github.com/ZZPot/Multi-color-transfer
+//   https://github.com/MehdiNS/ColorTransfert
 
 // Hu Yupan
 // Implementation and improvement of paper: Color Transfer between Images,
@@ -147,6 +152,8 @@ CImg<unsigned int> colorTransfer(CImg<unsigned int> source, CImg<unsigned int> t
     return RGBimg;
 }
 
+//  骆宏迪 skylhd
+// https://github.com/skylhd/ColorTransfer
 class ColorTransfer {
   public:
     // Run the approach of the paper
