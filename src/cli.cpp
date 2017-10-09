@@ -80,14 +80,15 @@ void ToneMapperCli::setExposureMode(int index)
 
 }
 
-void ToneMapperCli::run(std::string input, std::string filename,  std::string oper)
+void ToneMapperCli::run(const std::string& input, const std::string& output,  const std::string& oper)
 {
 
     setImage(input);
 
     m_exposure = m_image->getAutoKeyValue() / m_image->getLogAverageLuminance();
 
-    std::size_t found = filename.find_last_of(".");
+    std::size_t found = input.find_last_of(".");
+    std::string filename = output;
     std::string ext = filename.substr(found+1);
 
     if (ext == "png") {

@@ -39,8 +39,6 @@ add_executable(tonemapper-cli
     ${EXTRA_SOURCE}
 )
 
-target_link_libraries(tonemapper-cli nanogui ${NANOGUI_EXTRA_LIBS})
-
 set_target_properties(tonemapper-cli PROPERTIES OUTPUT_NAME ../../tonemapper-cli)
 
 cmake_policy(POP)

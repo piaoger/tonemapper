@@ -29,7 +29,7 @@ class ToneMapperCli {
         void setTonemapMode(int index);
         void setExposureMode(int index);
 
-        void run(std::string input, std::string output,  std::string oper) ;
+        void run(const std::string& input, const std::string& output,  const std::string& oper) ;
 
     private:
         Image* m_image;
