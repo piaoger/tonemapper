@@ -333,11 +333,11 @@ int main(int argc, char *argv[])
 
         std::cout<<"input:"<<input<<std::endl;
         std::cout<<"output:"<<output<<std::endl;
-        std::cout<<"oper: "<<oper<<std::endl;
 
         ToneMapperCli* tonemapper = new ToneMapperCli();
         tonemapper->run(input, output, oper);
         delete tonemapper;
+
     } else if (oper == "colorxfer") {
         std::string input = argv[2];
         std::string ref = argv[3];
@@ -348,8 +348,6 @@ int main(int argc, char *argv[])
         std::cout<<"output:"<<output<<std::endl;
 
         xmain();
-
-
     }
 
 

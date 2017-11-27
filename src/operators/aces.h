@@ -88,7 +88,7 @@ public:
 protected:
     float map(float v, float exposure, float A, float B, float C, float D, float E) const {
         float value = exposure * v;
-        float exposureBias = 2.f;
+        float exposureBias = 3.6f;
         value = mapAux(exposureBias * value, A, B, C, D, E);
         return value;
     }
