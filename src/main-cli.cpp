@@ -22,6 +22,10 @@
 #include <vector>
 #include <string>
 
+
+
+#ifdef COLOR_XFER_ON
+
 #define cimg_display 0
 #include "CImg.h"
 using namespace std;
@@ -310,7 +314,14 @@ int xmain() {
     return 0;
 }
 
+#else
 
+int xmain() {
+    printf("color xfer not impl\n");
+    return 0;
+}
+
+#endif
 
 void usage() {
     printf("help\n");
