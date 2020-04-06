@@ -54,6 +54,8 @@ Alternatively, pre-compiled builds are available here:
 
 [Tone Mapping](https://64.github.io/tonemapping/)
 
+[unity AutomaticExposure](https://docs.unrealengine.com/en-US/Engine/Rendering/PostProcessEffects/AutomaticExposure/index.html)
+
 ## Third Party Code
 
 The following libraries have been used:
