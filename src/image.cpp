@@ -1,10 +1,10 @@
 /*
     src/image.cpp -- Image datatype
-    
+
     Copyright (c) 2016 Tizian Zeltner
 
     Tone Mapper is provided under the MIT License.
-    See the LICENSE.txt file for the conditions of the license. 
+    See the LICENSE.txt file for the conditions of the license.
 */
 
 #include <image.h>
@@ -145,6 +145,11 @@ void Image::saveAsJPEG(const std::string &filename, TonemapOperator *tonemap, fl
 
 	tonemap->process(this, dst, exposure, progress);
 
+	// quality vs. file size
+	// As a general benchmark:
+	//     90% JPEG quality gives a very high-quality image while gaining a significant reduction on the original 100% file size.
+	//     80% JPEG quality gives a greater file size reduction with almost no loss in quality.
+	//     75% JPEG quality and lower begins to show obvious differences in the image, which can reduce your website user experience.
 	int ret = stbi_write_jpg(filename.c_str(), m_size.x(), m_size.y(), 3, rgb8, 80);
 	if (ret == 0) {
 		cerr << "Error: Could not save JPEG file" << endl;
