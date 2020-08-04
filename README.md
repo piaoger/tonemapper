@@ -50,6 +50,12 @@ Alternatively, pre-compiled builds are available here:
 * [v1.1 Windows x64](https://github.com/tizian/tonemapper/releases/download/v1.1/Tone.Mapper.1.1.Windows.x64.zip)
 * [v1.1 Mac OS X](https://github.com/tizian/tonemapper/releases/download/v1.1/Tone.Mapper.1.1.Mac.OS.X.zip)
 
+## readings
+
+[Tone Mapping](https://64.github.io/tonemapping/)
+
+[unity AutomaticExposure](https://docs.unrealengine.com/en-US/Engine/Rendering/PostProcessEffects/AutomaticExposure/index.html)
+
 ## Third Party Code
 
 The following libraries have been used:
